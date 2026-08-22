@@ -41,7 +41,7 @@ The static HTML report is the primary deliverable: everything a reviewer needs o
 
 Standard-library `unittest`, no dependencies required. Run with `python3 -m unittest discover tests -v`.
 
-**![Uploading Screenshot 2026-08-22 184957.png…]()
+**<img width="1914" height="1029" alt="Screenshot 2026-08-22 184957" src="https://github.com/user-attachments/assets/a1ae576a-f908-4d38-8b7b-1c30ee906f86" />
 **
 
 ### Interactive dashboard — `streamlit run app.py`
