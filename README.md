@@ -50,11 +50,13 @@ An optional Streamlit UI over the same underlying engine, for exploring results 
 
 **Overview & agent reasoning trail** — same headline metrics as the HTML report, live and re-runnable, including a seed control to regenerate the synthetic batch on demand.
 
-**Image 5**
+**<img width="1915" height="907" alt="Screenshot 2026-08-22 185050" src="https://github.com/user-attachments/assets/811a9376-64fc-4387-840e-8c227528521b" />
+**
 
 **Exceptions table** — sortable, scrollable view of all 22 exceptions with full notes.
 
-**Image 6**
+**<img width="1914" height="915" alt="Screenshot 2026-08-22 185144" src="https://github.com/user-attachments/assets/2ae3bdb2-b967-46ad-aa50-ff759507f9af" />
+**
 
 **Flagged matches & matched orders** — records that matched but are worth a second look (delayed settlements, fuzzy-reference matches), plus the full list of cleanly matched orders.
 
