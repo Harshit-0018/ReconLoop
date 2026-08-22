@@ -24,7 +24,8 @@ The static HTML report is the primary deliverable: everything a reviewer needs o
 
 **Summary metrics & agent reasoning trail** — order match rate, settlement match rate, exception count, throughput, and accuracy-vs-ground-truth up top, followed by the agent's own 6-step reasoning log.
 
-**Image 1**
+**<img width="1896" height="907" alt="Screenshot 2026-08-22 184840" src="https://github.com/user-attachments/assets/0d4c1c33-d87d-450b-8a8e-10289d982f3a" />
+**
 
 **Exceptions — order-side view** — every unresolved order, with its status (`AMOUNT_MISMATCH`, `UNSETTLED_ORDER`, etc.) and a plain-language note explaining why it couldn't be auto-matched.
 
