@@ -60,7 +60,8 @@ An optional Streamlit UI over the same underlying engine, for exploring results 
 
 **Flagged matches & matched orders** — records that matched but are worth a second look (delayed settlements, fuzzy-reference matches), plus the full list of cleanly matched orders.
 
-**Image 7**
+**<img width="1914" height="907" alt="Screenshot 2026-08-22 185158" src="https://github.com/user-attachments/assets/a1f45898-5132-4356-840b-85da014bc115" />
+**
 
 ## Why this design (and not "an LLM reconciles your books")
 
