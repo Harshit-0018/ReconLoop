@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+venv/
+.venv/
+
+# Environment / secrets
+.env
+.streamlit/secrets.toml
+
+# data/*.csv and data/ground_truth.json are intentionally NOT ignored —
+# they're the checked-in demo dataset (fixed seed, reproducible with
+# `python3 main.py --regenerate`), not a build artifact.
+
+# Fresh run output IS ignored — regenerate anytime with `python3 main.py`.
+# sample-output/ is a separate, checked-in copy of one real run, kept as
+# a static reference so the repo shows real results without running anything.
+output/*.json
+output/*.csv
+output/*.html
+!output/.gitkeep
+
+# OS cruft
+.DS_Store
+Thumbs.db

@@ -1,0 +1,58 @@
+order_id,order_date,customer_name,channel,order_amount,order_status
+order_yRgx30BWRCLuKy,2026-08-01,Divya Malhotra,Mobile App,1499.0,Completed
+order_oUXo7tNAD1Dc8r,2026-08-10,Rahul Gupta,Marketplace,14999.0,Completed
+order_rnasNPcE7qe4SU,2026-08-06,Neha Menon,Mobile App,3999.0,Completed
+order_jNHqtlFHjdSyUZ,2026-08-09,Rajesh Patel,Website,599.0,Completed
+order_tjA8qbCMs8jyOO,2026-08-15,Pooja Nair,Website,299.0,Completed
+order_fYjXM3ZCEb3vYF,2026-08-06,Pooja Reddy,Website,5999.0,Completed
+order_umbO1ugqFH1ARv,2026-08-08,Vivaan Malhotra,Marketplace,3999.0,Completed
+order_cVeWMHhU925vTj,2026-08-16,Krishna Kapoor,Marketplace,1199.0,Completed
+order_J1rv3mxwDODJZE,2026-08-10,Reyansh Reddy,Marketplace,9999.0,Completed
+order_80lir9ISwiDklS,2026-08-06,Vikram Iyer,Mobile App,349.0,Completed
+order_Bfz5LJF3hBGZW3,2026-08-16,Saanvi Patel,Mobile App,5999.0,Completed
+order_gzFAY1Hj50uLDm,2026-08-18,Amit Gupta,Website,999.0,Completed
+order_ZulFJhia0yf9SF,2026-08-14,Vikram Kapoor,Marketplace,7999.0,Completed
+order_GECSHSXg5A9Tz2,2026-08-04,Rohan Joshi,Website,399.0,Completed
+order_XXgYiBmr9VDHNj,2026-08-11,Sai Shah,Website,799.0,Completed
+order_QxvbsKzx8DaKAd,2026-08-09,Rahul Menon,Website,1299.0,Completed
+order_M3JPAIbXguqngy,2026-08-07,Anjali Sharma,Website,399.0,Completed
+order_nnkeiUBTzGA8Lk,2026-08-15,Nisha Gupta,Website,699.0,Completed
+order_piguFg31UeyqNt,2026-08-04,Diya Chatterjee,Mobile App,7999.0,Completed
+order_ujB3YcTB5Uqua2,2026-08-03,Rohan Malhotra,Marketplace,399.0,Completed
+order_vPIznNJt6IIySq,2026-08-15,Krishna Reddy,Marketplace,1499.0,Completed
+order_eJ3ZlWq9893HH3,2026-08-04,Anjali Rao,Website,1799.0,Completed
+order_4OfKXNquB2N3Lt,2026-08-17,Sai Pillai,Mobile App,899.0,Completed
+order_q5UGavLrMGcUyx,2026-08-17,Rajesh Malhotra,Mobile App,1499.0,Completed
+order_1ZLynjCVKQViBr,2026-08-04,Ananya Patel,Mobile App,1299.0,Completed
+order_Y4RZMOSxcyd4Ph,2026-08-17,Pooja Bhat,Website,3999.0,Completed
+order_Pw7X8bbGEuRtCu,2026-08-16,Kiara Reddy,Website,499.0,Completed
+order_IHONdsig3AohSe,2026-08-03,Pooja Joshi,Website,499.0,Completed
+order_LI71fNYmphNcWI,2026-08-12,Arjun Sharma,Mobile App,999.0,Completed
+order_yGL8ywfAUtIdFJ,2026-08-02,Vikram Menon,Marketplace,3499.0,Completed
+order_hpBoPnrnD9Rahc,2026-08-17,Myra Malhotra,Website,14999.0,Completed
+order_tJ1pYqsFrtQwfM,2026-08-11,Suresh Malhotra,Marketplace,4999.0,Completed
+order_8nSZZH4QSynFY5,2026-08-16,Saanvi Verma,Mobile App,3999.0,Completed
+order_ytlwlqDFX0AsDl,2026-08-17,Myra Bhat,Website,1299.0,Completed
+order_HByN56x28ZpJLy,2026-08-01,Vihaan Menon,Website,1499.0,Completed
+order_PyPKWCKu2gAHu5,2026-08-05,Ishaan Bhat,Mobile App,1199.0,Completed
+order_05VdsLMvp4eYtl,2026-08-16,Karthik Menon,Website,899.0,Completed
+order_KrQJigYqg9BkgR,2026-08-12,Amit Reddy,Marketplace,349.0,Completed
+order_5DGU5eMv1PXS7N,2026-08-03,Anjali Sharma,Website,1999.0,Completed
+order_s1racjP4M9DZH7,2026-08-12,Anjali Rao,Mobile App,2999.0,Completed
+order_uMnMDBR4hRx3GR,2026-08-13,Rohan Malhotra,Website,999.0,Completed
+order_vLPNA1XZE24Eva,2026-08-08,Karthik Nair,Marketplace,349.0,Completed
+order_wzfnxFYxbALSsk,2026-08-13,Karthik Nair,Marketplace,1999.0,Completed
+order_huG8GP38g4o5MN,2026-08-14,Meera Chatterjee,Marketplace,3999.0,Completed
+order_ErDHWTVeXJirZr,2026-08-01,Sai Joshi,Website,1799.0,Completed
+order_H9wzdDcbkinIzW,2026-08-13,Sneha Kapoor,Website,12999.0,Completed
+order_jzx4ef0RRY4Tyl,2026-08-11,Neha Menon,Mobile App,1799.0,Completed
+order_UGo86EQQvvwuME,2026-08-16,Suresh Kapoor,Mobile App,999.0,Completed
+order_jJowDyMOLd7SQJ,2026-08-09,Vikram Gupta,Mobile App,1299.0,Completed
+order_PExmmWl8xEe6OM,2026-08-10,Meera Verma,Marketplace,599.0,Completed
+order_gfjUyvJqtcVLQY,2026-08-06,Suresh Shah,Mobile App,799.0,Completed
+order_wM3Hk9HhKxZnLe,2026-08-06,Kiara Joshi,Website,3999.0,Completed
+order_Urnu3hhuKnFOGC,2026-08-13,Saanvi Chatterjee,Marketplace,799.0,Completed
+order_VZXiWulIruXBeH,2026-08-07,Ishaan Sharma,Marketplace,1999.0,Completed
+order_oQ9FnxkI3BUBD2,2026-08-07,Rohan Bhat,Marketplace,1499.0,Completed
+order_3FvMlhfwpjCD82,2026-08-18,Meera Pillai,Website,499.0,Completed
+order_iwAyypXAQoXilI,2026-08-18,Vikram Joshi,Mobile App,299.0,Completed

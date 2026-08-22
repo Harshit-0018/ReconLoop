@@ -1,0 +1,9 @@
+# The core CLI (main.py) needs nothing beyond the Python 3.9+ standard
+# library — no install required to generate data, reconcile it, validate
+# it, and write output/report.html, .json, and .csv.
+#
+# Everything below is optional, for bonus features only:
+
+streamlit>=1.35        # optional interactive dashboard — see app.py ("streamlit run app.py")
+anthropic>=0.40        # optional: powers `--use-llm` exception narration (needs ANTHROPIC_API_KEY)
+python-dotenv>=1.0      # optional: auto-loads ANTHROPIC_API_KEY from a local .env file

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ReconLoop — Reconciliation Statement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EFE8D8; --paper-alt:#E6DEC9; --paper-line:#C9BFA0;
+  --ink:#1B2430; --ledger-red:#A6321E; --verified-green:#2F5D50;
+  --brass:#A9821B; --slate:#6B6455;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:'IBM Plex Sans',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.sheet{max-width:960px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
+.num{text-align:right;}
+
+.masthead{
+  border-bottom:2px solid var(--ink); padding-bottom:1.25rem; margin-bottom:1.75rem;
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;
+}
+.masthead h1{
+  font-family:'Fraunces',Georgia,serif; font-weight:700; font-size:2.1rem; margin:0;
+  letter-spacing:-0.01em;
+}
+.masthead .tag{color:var(--slate); font-size:0.95rem; margin-top:0.25rem;}
+.masthead .meta{text-align:right; font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:var(--slate); line-height:1.6;}
+.masthead .meta b{color:var(--ink);}
+
+.summary-strip{
+  display:grid; grid-template-columns:repeat(5,1fr); gap:0.9rem; margin-bottom:2rem;
+}
+@media (max-width:760px){ .summary-strip{grid-template-columns:repeat(2,1fr);} }
+.stat-card{
+  border:1px solid var(--paper-line); border-radius:2px; padding:0.9rem 1rem; background:var(--paper-alt);
+}
+.stat-label{font-size:0.68rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--slate);}
+.stat-value{font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:1.5rem; margin-top:0.15rem;}
+.stat-sub{font-size:0.72rem; color:var(--slate); margin-top:0.2rem;}
+
+h2{
+  font-family:'Fraunces',Georgia,serif; font-size:1.25rem; font-weight:600;
+  border-bottom:1px solid var(--paper-line); padding-bottom:0.4rem; margin:2.2rem 0 0.9rem;
+}
+p.lede{color:var(--slate); margin:0 0 1rem; font-size:0.92rem;}
+
+details{margin-bottom:0.6rem;}
+summary{
+  cursor:pointer; font-family:'Fraunces',Georgia,serif; font-size:1.1rem; font-weight:600;
+  padding:0.5rem 0; list-style:none;
+}
+summary::-webkit-details-marker{display:none;}
+summary::before{content:"\25b8 "; color:var(--brass);}
+details[open] summary::before{content:"\25be ";}
+
+ol.trace{padding-left:1.4rem; margin:0.5rem 0 0;}
+ol.trace li{padding:0.35rem 0; border-bottom:1px dashed var(--paper-line); font-size:0.92rem;}
+ol.trace li:last-child{border-bottom:none; font-weight:600;}
+
+table{width:100%; border-collapse:collapse; font-size:0.86rem; margin-top:0.5rem;}
+thead th{
+  text-align:left; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.06em;
+  color:var(--slate); border-bottom:1px solid var(--ink); padding:0.4rem 0.5rem;
+}
+tbody td{padding:0.5rem; border-bottom:1px solid var(--paper-line); vertical-align:top;}
+tbody tr:nth-child(even){background:rgba(201,191,160,0.18);}
+td.notes{color:var(--slate); max-width:340px;}
+p.empty{color:var(--slate); font-style:italic; font-size:0.88rem;}
+
+.stamp{
+  display:inline-block; padding:1px 8px; border:2px solid currentColor; border-radius:3px;
+  font-family:'IBM Plex Mono',monospace; font-size:0.66rem; font-weight:700;
+  letter-spacing:0.05em; text-transform:uppercase; transform:rotate(-2deg); white-space:nowrap;
+}
+.stamp.ok{color:var(--verified-green);}
+.stamp.bad{color:var(--ledger-red);}
+
+footer{margin-top:2.5rem; padding-top:1rem; border-top:1px solid var(--paper-line); color:var(--slate); font-size:0.78rem;}
+
+@media (prefers-reduced-motion:no-preference){
+  .sheet{animation:fadein 0.4s ease-out;}
+  @keyframes fadein{from{opacity:0;transform:translateY(4px);} to{opacity:1;transform:none;}}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="masthead">
+    <div>
+      <h1>ReconLoop</h1>
+      <div class="tag">Reconciliation Statement — Order Ledger × Settlement Report</div>
+    </div>
+    <div class="meta">
+      <div>Generated <b>2026-08-22T13:01:31</b></div>
+      <div>Batch size <b>116 records</b></div>
+      <div>Razorpay AI Buildathon 2026 &middot; Track 04</div>
+    </div>
+  </header>
+
+  <section class="summary-strip">
+    <div class='stat-card'><div class='stat-label'>Order match rate</div><div class='stat-value'>82.46%</div><div class='stat-sub'>57 orders</div></div>
+    <div class='stat-card'><div class='stat-label'>Settlement match rate</div><div class='stat-value'>79.66%</div><div class='stat-sub'>59 settlements</div></div>
+    <div class='stat-card'><div class='stat-label'>Exceptions</div><div class='stat-value'>22</div><div class='stat-sub'>none hidden, none cherry-picked</div></div>
+    <div class='stat-card'><div class='stat-label'>Throughput</div><div class='stat-value'>84724/s</div><div class='stat-sub'>0.0014s elapsed</div></div>
+    <div class='stat-card'><div class='stat-label'>Accuracy vs ground truth</div><div class='stat-value'>100.0%</div><div class='stat-sub'>116/116 records</div></div>
+  </section>
+
+  <details open>
+    <summary>Agent reasoning trail (6 steps)</summary>
+    <ol class="trace"><li>Loaded 57 ledger orders and 59 settlement records.</li>
+<li>Pass 1 (exact order_id match): 37 clean, 6 matched-but-delayed, 5 amount mismatches held as exceptions (not force-matched).</li>
+<li>Pass 2 (fuzzy order_id match, similarity &gt;= 0.85): resolved 4 more order(s) whose reference had formatting drift.</li>
+<li>Pass 3 (duplicate detection): flagged 3 extra settlement(s) beyond what each order needed.</li>
+<li>Remaining after all passes: 5 order(s) with no settlement at all, 4 settlement(s) with no matching order at all — reported as exceptions, not hidden.</li>
+<li>Final: 47/57 orders matched (82.5%), 47/59 settlements matched (79.7%).</li></ol>
+  </details>
+
+  <h2>Exceptions — 22, every one of them</h2>
+  <p class="lede">Could not be auto-resolved. Held for human review, not forced into a match.</p>
+  <table><thead><tr><th>Reference</th><th>Side</th><th>Status</th><th>Amount</th><th>Date</th><th>Note</th></tr></thead><tbody><tr><td class='mono'>order_QxvbsKzx8DaKAd</td><td>Order</td><td><span class="stamp bad">AMOUNT MISMATCH</span></td><td class='mono num'>₹1,299.00</td><td class='mono'>2026-08-09</td><td class='notes'>Reference matched to setl_D7Y2RMkyI2ED, but amounts disagree: ledger shows ₹1,299.00 while the gateway settled ₹1,099.00 (difference of ₹200.00). Usually a discount, partial refund, or manual correction applied on only one side.</td></tr>
+<tr><td class='mono'>order_M3JPAIbXguqngy</td><td>Order</td><td><span class="stamp bad">AMOUNT MISMATCH</span></td><td class='mono num'>₹399.00</td><td class='mono'>2026-08-07</td><td class='notes'>Reference matched to setl_akgw1kaxThfr, but amounts disagree: ledger shows ₹399.00 while the gateway settled ₹349.00 (difference of ₹50.00). Usually a discount, partial refund, or manual correction applied on only one side.</td></tr>
+<tr><td class='mono'>order_q5UGavLrMGcUyx</td><td>Order</td><td><span class="stamp bad">UNSETTLED ORDER</span></td><td class='mono num'>₹1,499.00</td><td class='mono'>2026-08-17</td><td class='notes'>No settlement record found for order_id &#x27;order_q5UGavLrMGcUyx&#x27;, by exact or fuzzy match. Either the payment hasn&#x27;t settled yet, or it failed silently on the customer&#x27;s end.</td></tr>
+<tr><td class='mono'>order_yGL8ywfAUtIdFJ</td><td>Order</td><td><span class="stamp bad">AMOUNT MISMATCH</span></td><td class='mono num'>₹3,499.00</td><td class='mono'>2026-08-02</td><td class='notes'>Reference matched to setl_ZlcLOI4CAKvp, but amounts disagree: ledger shows ₹3,499.00 while the gateway settled ₹3,400.00 (difference of ₹99.00). Usually a discount, partial refund, or manual correction applied on only one side.</td></tr>
+<tr><td class='mono'>order_8nSZZH4QSynFY5</td><td>Order</td><td><span class="stamp bad">AMOUNT MISMATCH</span></td><td class='mono num'>₹3,999.00</td><td class='mono'>2026-08-16</td><td class='notes'>Reference matched to setl_xt6ks1yHSusR, but amounts disagree: ledger shows ₹3,999.00 while the gateway settled ₹3,799.00 (difference of ₹200.00). Usually a discount, partial refund, or manual correction applied on only one side.</td></tr>
+<tr><td class='mono'>order_PyPKWCKu2gAHu5</td><td>Order</td><td><span class="stamp bad">UNSETTLED ORDER</span></td><td class='mono num'>₹1,199.00</td><td class='mono'>2026-08-05</td><td class='notes'>No settlement record found for order_id &#x27;order_PyPKWCKu2gAHu5&#x27;, by exact or fuzzy match. Either the payment hasn&#x27;t settled yet, or it failed silently on the customer&#x27;s end.</td></tr>
+<tr><td class='mono'>order_05VdsLMvp4eYtl</td><td>Order</td><td><span class="stamp bad">UNSETTLED ORDER</span></td><td class='mono num'>₹899.00</td><td class='mono'>2026-08-16</td><td class='notes'>No settlement record found for order_id &#x27;order_05VdsLMvp4eYtl&#x27;, by exact or fuzzy match. Either the payment hasn&#x27;t settled yet, or it failed silently on the customer&#x27;s end.</td></tr>
+<tr><td class='mono'>order_wzfnxFYxbALSsk</td><td>Order</td><td><span class="stamp bad">UNSETTLED ORDER</span></td><td class='mono num'>₹1,999.00</td><td class='mono'>2026-08-13</td><td class='notes'>No settlement record found for order_id &#x27;order_wzfnxFYxbALSsk&#x27;, by exact or fuzzy match. Either the payment hasn&#x27;t settled yet, or it failed silently on the customer&#x27;s end.</td></tr>
+<tr><td class='mono'>order_H9wzdDcbkinIzW</td><td>Order</td><td><span class="stamp bad">AMOUNT MISMATCH</span></td><td class='mono num'>₹12,999.00</td><td class='mono'>2026-08-13</td><td class='notes'>Reference matched to setl_iFsXz3u3ucem, but amounts disagree: ledger shows ₹12,999.00 while the gateway settled ₹12,650.00 (difference of ₹349.00). Usually a discount, partial refund, or manual correction applied on only one side.</td></tr>
+<tr><td class='mono'>order_VZXiWulIruXBeH</td><td>Order</td><td><span class="stamp bad">UNSETTLED ORDER</span></td><td class='mono num'>₹1,999.00</td><td class='mono'>2026-08-07</td><td class='notes'>No settlement record found for order_id &#x27;order_VZXiWulIruXBeH&#x27;, by exact or fuzzy match. Either the payment hasn&#x27;t settled yet, or it failed silently on the customer&#x27;s end.</td></tr>
+<tr><td class='mono'>setl_D7Y2RMkyI2ED</td><td>Settlement</td><td><span class="stamp bad">AMOUNT MISMATCH</span></td><td class='mono num'>₹1,099.00</td><td class='mono'>2026-08-10</td><td class='notes'>Reference matched to setl_D7Y2RMkyI2ED, but amounts disagree: ledger shows ₹1,299.00 while the gateway settled ₹1,099.00 (difference of ₹200.00). Usually a discount, partial refund, or manual correction applied on only one side.</td></tr>
+<tr><td class='mono'>setl_ZlcLOI4CAKvp</td><td>Settlement</td><td><span class="stamp bad">AMOUNT MISMATCH</span></td><td class='mono num'>₹3,400.00</td><td class='mono'>2026-08-04</td><td class='notes'>Reference matched to setl_ZlcLOI4CAKvp, but amounts disagree: ledger shows ₹3,499.00 while the gateway settled ₹3,400.00 (difference of ₹99.00). Usually a discount, partial refund, or manual correction applied on only one side.</td></tr>
+<tr><td class='mono'>setl_rSyzsek3j57a</td><td>Settlement</td><td><span class="stamp bad">UNIDENTIFIED SETTLEMENT</span></td><td class='mono num'>₹499.00</td><td class='mono'>2026-08-17</td><td class='notes'>Settlement setl_rSyzsek3j57a (order_id &#x27;order_UzWhGdUC7WwyCI&#x27;) has no matching order in the ledger. Could be a manually-created payment link, a test transaction, or a reference typo on the order side.</td></tr>
+<tr><td class='mono'>setl_NdnXuDvcuHcE</td><td>Settlement</td><td><span class="stamp bad">UNIDENTIFIED SETTLEMENT</span></td><td class='mono num'>₹399.00</td><td class='mono'>2026-08-16</td><td class='notes'>Settlement setl_NdnXuDvcuHcE (order_id &#x27;order_H57mAOrc0miaeK&#x27;) has no matching order in the ledger. Could be a manually-created payment link, a test transaction, or a reference typo on the order side.</td></tr>
+<tr><td class='mono'>setl_HIH7od7WkjzT</td><td>Settlement</td><td><span class="stamp bad">DUPLICATE SETTLEMENT</span></td><td class='mono num'>₹1,799.00</td><td class='mono'>2026-08-16</td><td class='notes'>Extra settlement for order_jzx4ef0RRY4Tyl, which was already matched to setl_6dlEZedTxjI1. Looks like the payment was retried after a false failure — worth checking whether a refund is owed.</td></tr>
+<tr><td class='mono'>setl_iFsXz3u3ucem</td><td>Settlement</td><td><span class="stamp bad">AMOUNT MISMATCH</span></td><td class='mono num'>₹12,650.00</td><td class='mono'>2026-08-15</td><td class='notes'>Reference matched to setl_iFsXz3u3ucem, but amounts disagree: ledger shows ₹12,999.00 while the gateway settled ₹12,650.00 (difference of ₹349.00). Usually a discount, partial refund, or manual correction applied on only one side.</td></tr>
+<tr><td class='mono'>setl_Kf4YG5Wn6GgO</td><td>Settlement</td><td><span class="stamp bad">DUPLICATE SETTLEMENT</span></td><td class='mono num'>₹799.00</td><td class='mono'>2026-08-18</td><td class='notes'>Extra settlement for order_Urnu3hhuKnFOGC, which was already matched to setl_etDmiofkWrxi. Looks like the payment was retried after a false failure — worth checking whether a refund is owed.</td></tr>
+<tr><td class='mono'>setl_akgw1kaxThfr</td><td>Settlement</td><td><span class="stamp bad">AMOUNT MISMATCH</span></td><td class='mono num'>₹349.00</td><td class='mono'>2026-08-08</td><td class='notes'>Reference matched to setl_akgw1kaxThfr, but amounts disagree: ledger shows ₹399.00 while the gateway settled ₹349.00 (difference of ₹50.00). Usually a discount, partial refund, or manual correction applied on only one side.</td></tr>
+<tr><td class='mono'>setl_CCymR4YJHPzP</td><td>Settlement</td><td><span class="stamp bad">UNIDENTIFIED SETTLEMENT</span></td><td class='mono num'>₹299.00</td><td class='mono'>2026-08-18</td><td class='notes'>Settlement setl_CCymR4YJHPzP (order_id &#x27;order_tQnpeDN86f7roS&#x27;) has no matching order in the ledger. Could be a manually-created payment link, a test transaction, or a reference typo on the order side.</td></tr>
+<tr><td class='mono'>setl_aVxx9WsPHm62</td><td>Settlement</td><td><span class="stamp bad">UNIDENTIFIED SETTLEMENT</span></td><td class='mono num'>₹2,999.00</td><td class='mono'>2026-08-13</td><td class='notes'>Settlement setl_aVxx9WsPHm62 (order_id &#x27;order_9zXQhFMDI35Pwu&#x27;) has no matching order in the ledger. Could be a manually-created payment link, a test transaction, or a reference typo on the order side.</td></tr>
+<tr><td class='mono'>setl_xt6ks1yHSusR</td><td>Settlement</td><td><span class="stamp bad">AMOUNT MISMATCH</span></td><td class='mono num'>₹3,799.00</td><td class='mono'>2026-08-19</td><td class='notes'>Reference matched to setl_xt6ks1yHSusR, but amounts disagree: ledger shows ₹3,999.00 while the gateway settled ₹3,799.00 (difference of ₹200.00). Usually a discount, partial refund, or manual correction applied on only one side.</td></tr>
+<tr><td class='mono'>setl_ZPJnXV3QEzhj</td><td>Settlement</td><td><span class="stamp bad">DUPLICATE SETTLEMENT</span></td><td class='mono num'>₹4,999.00</td><td class='mono'>2026-08-15</td><td class='notes'>Extra settlement for order_tJ1pYqsFrtQwfM, which was already matched to setl_VM2kM588IfDc. Looks like the payment was retried after a false failure — worth checking whether a refund is owed.</td></tr></tbody></table>
+
+  <details>
+    <summary>Flagged matches (20) — resolved, but worth a glance</summary>
+    <p class="lede">Matched with high confidence, just outside the "clean" case (late settlement, or reference text drift).</p>
+    <table><thead><tr><th>Reference</th><th>Side</th><th>Status</th><th>Amount</th><th>Date</th><th>Note</th></tr></thead><tbody><tr><td class='mono'>order_oUXo7tNAD1Dc8r</td><td>Order</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹14,999.00</td><td class='mono'>2026-08-10</td><td class='notes'>Matched, but settled 8 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>order_jNHqtlFHjdSyUZ</td><td>Order</td><td><span class="stamp ok">FUZZY REFERENCE MATCH</span></td><td class='mono num'>₹599.00</td><td class='mono'>2026-08-09</td><td class='notes'>Matched via approximate reference text (order_id &#x27;order_jNHqtlFHjdSyUZ&#x27; vs settlement order_id &#x27;order_jNHqltFHjdSyUZ&#x27;) — formatting differs slightly. Recommend verifying manually.</td></tr>
+<tr><td class='mono'>order_fYjXM3ZCEb3vYF</td><td>Order</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹5,999.00</td><td class='mono'>2026-08-06</td><td class='notes'>Matched, but settled 9 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>order_gzFAY1Hj50uLDm</td><td>Order</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹999.00</td><td class='mono'>2026-08-18</td><td class='notes'>Matched, but settled 12 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>order_GECSHSXg5A9Tz2</td><td>Order</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹399.00</td><td class='mono'>2026-08-04</td><td class='notes'>Matched, but settled 13 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>order_nnkeiUBTzGA8Lk</td><td>Order</td><td><span class="stamp ok">FUZZY REFERENCE MATCH</span></td><td class='mono num'>₹699.00</td><td class='mono'>2026-08-15</td><td class='notes'>Matched via approximate reference text (order_id &#x27;order_nnkeiUBTzGA8Lk&#x27; vs settlement order_id &#x27;order_nnkeiUBTzGA0Lk&#x27;) — formatting differs slightly. Recommend verifying manually.</td></tr>
+<tr><td class='mono'>order_ujB3YcTB5Uqua2</td><td>Order</td><td><span class="stamp ok">FUZZY REFERENCE MATCH</span></td><td class='mono num'>₹399.00</td><td class='mono'>2026-08-03</td><td class='notes'>Matched via approximate reference text (order_id &#x27;order_ujB3YcTB5Uqua2&#x27; vs settlement order_id &#x27;order_ujB3YcTB5Uqua&#x27;) — formatting differs slightly. Recommend verifying manually.</td></tr>
+<tr><td class='mono'>order_Y4RZMOSxcyd4Ph</td><td>Order</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹3,999.00</td><td class='mono'>2026-08-17</td><td class='notes'>Matched, but settled 12 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>order_5DGU5eMv1PXS7N</td><td>Order</td><td><span class="stamp ok">FUZZY REFERENCE MATCH</span></td><td class='mono num'>₹1,999.00</td><td class='mono'>2026-08-03</td><td class='notes'>Matched via approximate reference text (order_id &#x27;order_5DGU5eMv1PXS7N&#x27; vs settlement order_id &#x27;order_5DGUe5Mv1PXS7N&#x27;) — formatting differs slightly. Recommend verifying manually.</td></tr>
+<tr><td class='mono'>order_ErDHWTVeXJirZr</td><td>Order</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹1,799.00</td><td class='mono'>2026-08-01</td><td class='notes'>Matched, but settled 13 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>setl_14XDvSZeWy4H</td><td>Settlement</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹14,999.00</td><td class='mono'>2026-08-18</td><td class='notes'>Matched, but settled 8 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>setl_falbpGp8cd2t</td><td>Settlement</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹399.00</td><td class='mono'>2026-08-17</td><td class='notes'>Matched, but settled 13 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>setl_hl4KrV7FfxQb</td><td>Settlement</td><td><span class="stamp ok">FUZZY REFERENCE MATCH</span></td><td class='mono num'>₹699.00</td><td class='mono'>2026-08-16</td><td class='notes'>Matched via approximate reference text (order_id &#x27;order_nnkeiUBTzGA8Lk&#x27; vs settlement order_id &#x27;order_nnkeiUBTzGA0Lk&#x27;) — formatting differs slightly. Recommend verifying manually.</td></tr>
+<tr><td class='mono'>setl_uhD6Id0gooVO</td><td>Settlement</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹3,999.00</td><td class='mono'>2026-08-29</td><td class='notes'>Matched, but settled 12 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>setl_T961vT58s8qt</td><td>Settlement</td><td><span class="stamp ok">FUZZY REFERENCE MATCH</span></td><td class='mono num'>₹1,999.00</td><td class='mono'>2026-08-04</td><td class='notes'>Matched via approximate reference text (order_id &#x27;order_5DGU5eMv1PXS7N&#x27; vs settlement order_id &#x27;order_5DGUe5Mv1PXS7N&#x27;) — formatting differs slightly. Recommend verifying manually.</td></tr>
+<tr><td class='mono'>setl_WJSaVJaed4bT</td><td>Settlement</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹1,799.00</td><td class='mono'>2026-08-14</td><td class='notes'>Matched, but settled 13 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>setl_CrB7ZyrnkOnh</td><td>Settlement</td><td><span class="stamp ok">FUZZY REFERENCE MATCH</span></td><td class='mono num'>₹599.00</td><td class='mono'>2026-08-11</td><td class='notes'>Matched via approximate reference text (order_id &#x27;order_jNHqtlFHjdSyUZ&#x27; vs settlement order_id &#x27;order_jNHqltFHjdSyUZ&#x27;) — formatting differs slightly. Recommend verifying manually.</td></tr>
+<tr><td class='mono'>setl_45mmFd1iFR3g</td><td>Settlement</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹5,999.00</td><td class='mono'>2026-08-15</td><td class='notes'>Matched, but settled 9 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>setl_05KB9x1OIsvV</td><td>Settlement</td><td><span class="stamp ok">FUZZY REFERENCE MATCH</span></td><td class='mono num'>₹399.00</td><td class='mono'>2026-08-05</td><td class='notes'>Matched via approximate reference text (order_id &#x27;order_ujB3YcTB5Uqua2&#x27; vs settlement order_id &#x27;order_ujB3YcTB5Uqua&#x27;) — formatting differs slightly. Recommend verifying manually.</td></tr>
+<tr><td class='mono'>setl_D55RRTkyqo0V</td><td>Settlement</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹999.00</td><td class='mono'>2026-08-30</td><td class='notes'>Matched, but settled 12 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr></tbody></table>
+  </details>
+
+  <details>
+    <summary>All matched records (94)</summary>
+    <table><thead><tr><th>Reference</th><th>Side</th><th>Status</th><th>Amount</th><th>Date</th><th>Note</th></tr></thead><tbody><tr><td class='mono'>order_yRgx30BWRCLuKy</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,499.00</td><td class='mono'>2026-08-01</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_oUXo7tNAD1Dc8r</td><td>Order</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹14,999.00</td><td class='mono'>2026-08-10</td><td class='notes'>Matched, but settled 8 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>order_rnasNPcE7qe4SU</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹3,999.00</td><td class='mono'>2026-08-06</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_jNHqtlFHjdSyUZ</td><td>Order</td><td><span class="stamp ok">FUZZY REFERENCE MATCH</span></td><td class='mono num'>₹599.00</td><td class='mono'>2026-08-09</td><td class='notes'>Matched via approximate reference text (order_id &#x27;order_jNHqtlFHjdSyUZ&#x27; vs settlement order_id &#x27;order_jNHqltFHjdSyUZ&#x27;) — formatting differs slightly. Recommend verifying manually.</td></tr>
+<tr><td class='mono'>order_tjA8qbCMs8jyOO</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹299.00</td><td class='mono'>2026-08-15</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_fYjXM3ZCEb3vYF</td><td>Order</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹5,999.00</td><td class='mono'>2026-08-06</td><td class='notes'>Matched, but settled 9 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>order_umbO1ugqFH1ARv</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹3,999.00</td><td class='mono'>2026-08-08</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_cVeWMHhU925vTj</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,199.00</td><td class='mono'>2026-08-16</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_J1rv3mxwDODJZE</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹9,999.00</td><td class='mono'>2026-08-10</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_80lir9ISwiDklS</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹349.00</td><td class='mono'>2026-08-06</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_Bfz5LJF3hBGZW3</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹5,999.00</td><td class='mono'>2026-08-16</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_gzFAY1Hj50uLDm</td><td>Order</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹999.00</td><td class='mono'>2026-08-18</td><td class='notes'>Matched, but settled 12 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>order_ZulFJhia0yf9SF</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹7,999.00</td><td class='mono'>2026-08-14</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_GECSHSXg5A9Tz2</td><td>Order</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹399.00</td><td class='mono'>2026-08-04</td><td class='notes'>Matched, but settled 13 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>order_XXgYiBmr9VDHNj</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹799.00</td><td class='mono'>2026-08-11</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_nnkeiUBTzGA8Lk</td><td>Order</td><td><span class="stamp ok">FUZZY REFERENCE MATCH</span></td><td class='mono num'>₹699.00</td><td class='mono'>2026-08-15</td><td class='notes'>Matched via approximate reference text (order_id &#x27;order_nnkeiUBTzGA8Lk&#x27; vs settlement order_id &#x27;order_nnkeiUBTzGA0Lk&#x27;) — formatting differs slightly. Recommend verifying manually.</td></tr>
+<tr><td class='mono'>order_piguFg31UeyqNt</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹7,999.00</td><td class='mono'>2026-08-04</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_ujB3YcTB5Uqua2</td><td>Order</td><td><span class="stamp ok">FUZZY REFERENCE MATCH</span></td><td class='mono num'>₹399.00</td><td class='mono'>2026-08-03</td><td class='notes'>Matched via approximate reference text (order_id &#x27;order_ujB3YcTB5Uqua2&#x27; vs settlement order_id &#x27;order_ujB3YcTB5Uqua&#x27;) — formatting differs slightly. Recommend verifying manually.</td></tr>
+<tr><td class='mono'>order_vPIznNJt6IIySq</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,499.00</td><td class='mono'>2026-08-15</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_eJ3ZlWq9893HH3</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,799.00</td><td class='mono'>2026-08-04</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_4OfKXNquB2N3Lt</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹899.00</td><td class='mono'>2026-08-17</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_1ZLynjCVKQViBr</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,299.00</td><td class='mono'>2026-08-04</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_Y4RZMOSxcyd4Ph</td><td>Order</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹3,999.00</td><td class='mono'>2026-08-17</td><td class='notes'>Matched, but settled 12 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>order_Pw7X8bbGEuRtCu</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹499.00</td><td class='mono'>2026-08-16</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_IHONdsig3AohSe</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹499.00</td><td class='mono'>2026-08-03</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_LI71fNYmphNcWI</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹999.00</td><td class='mono'>2026-08-12</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_hpBoPnrnD9Rahc</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹14,999.00</td><td class='mono'>2026-08-17</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_tJ1pYqsFrtQwfM</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹4,999.00</td><td class='mono'>2026-08-11</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_ytlwlqDFX0AsDl</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,299.00</td><td class='mono'>2026-08-17</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_HByN56x28ZpJLy</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,499.00</td><td class='mono'>2026-08-01</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_KrQJigYqg9BkgR</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹349.00</td><td class='mono'>2026-08-12</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_5DGU5eMv1PXS7N</td><td>Order</td><td><span class="stamp ok">FUZZY REFERENCE MATCH</span></td><td class='mono num'>₹1,999.00</td><td class='mono'>2026-08-03</td><td class='notes'>Matched via approximate reference text (order_id &#x27;order_5DGU5eMv1PXS7N&#x27; vs settlement order_id &#x27;order_5DGUe5Mv1PXS7N&#x27;) — formatting differs slightly. Recommend verifying manually.</td></tr>
+<tr><td class='mono'>order_s1racjP4M9DZH7</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹2,999.00</td><td class='mono'>2026-08-12</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_uMnMDBR4hRx3GR</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹999.00</td><td class='mono'>2026-08-13</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_vLPNA1XZE24Eva</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹349.00</td><td class='mono'>2026-08-08</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_huG8GP38g4o5MN</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹3,999.00</td><td class='mono'>2026-08-14</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_ErDHWTVeXJirZr</td><td>Order</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹1,799.00</td><td class='mono'>2026-08-01</td><td class='notes'>Matched, but settled 13 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>order_jzx4ef0RRY4Tyl</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,799.00</td><td class='mono'>2026-08-11</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_UGo86EQQvvwuME</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹999.00</td><td class='mono'>2026-08-16</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_jJowDyMOLd7SQJ</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,299.00</td><td class='mono'>2026-08-09</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_PExmmWl8xEe6OM</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹599.00</td><td class='mono'>2026-08-10</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_gfjUyvJqtcVLQY</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹799.00</td><td class='mono'>2026-08-06</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_wM3Hk9HhKxZnLe</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹3,999.00</td><td class='mono'>2026-08-06</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_Urnu3hhuKnFOGC</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹799.00</td><td class='mono'>2026-08-13</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_oQ9FnxkI3BUBD2</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,499.00</td><td class='mono'>2026-08-07</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_3FvMlhfwpjCD82</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹499.00</td><td class='mono'>2026-08-18</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>order_iwAyypXAQoXilI</td><td>Order</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹299.00</td><td class='mono'>2026-08-18</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_14XDvSZeWy4H</td><td>Settlement</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹14,999.00</td><td class='mono'>2026-08-18</td><td class='notes'>Matched, but settled 8 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>setl_aNfhs0gCa05R</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹3,999.00</td><td class='mono'>2026-08-16</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_falbpGp8cd2t</td><td>Settlement</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹399.00</td><td class='mono'>2026-08-17</td><td class='notes'>Matched, but settled 13 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>setl_F6I9btoGx4If</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹349.00</td><td class='mono'>2026-08-09</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_Hp1wR0D6Lwfe</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹7,999.00</td><td class='mono'>2026-08-05</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_i0mSMtltWBsB</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹14,999.00</td><td class='mono'>2026-08-19</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_hl4KrV7FfxQb</td><td>Settlement</td><td><span class="stamp ok">FUZZY REFERENCE MATCH</span></td><td class='mono num'>₹699.00</td><td class='mono'>2026-08-16</td><td class='notes'>Matched via approximate reference text (order_id &#x27;order_nnkeiUBTzGA8Lk&#x27; vs settlement order_id &#x27;order_nnkeiUBTzGA0Lk&#x27;) — formatting differs slightly. Recommend verifying manually.</td></tr>
+<tr><td class='mono'>setl_bbrIEAq9ui8O</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹299.00</td><td class='mono'>2026-08-19</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_I0YH0H8g0rsc</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,299.00</td><td class='mono'>2026-08-11</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_zapmdqWZkHr6</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹3,999.00</td><td class='mono'>2026-08-07</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_uhD6Id0gooVO</td><td>Settlement</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹3,999.00</td><td class='mono'>2026-08-29</td><td class='notes'>Matched, but settled 12 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>setl_RDB4eCFdCEwV</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹499.00</td><td class='mono'>2026-08-19</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_wiymVOa2MPE8</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹799.00</td><td class='mono'>2026-08-09</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_IOrovjJXhrsK</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,299.00</td><td class='mono'>2026-08-06</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_1JVbWX3sA7xJ</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹499.00</td><td class='mono'>2026-08-04</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_nBNvDMoRTeJz</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹499.00</td><td class='mono'>2026-08-19</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_F5a8w091HSAY</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹9,999.00</td><td class='mono'>2026-08-12</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_T961vT58s8qt</td><td>Settlement</td><td><span class="stamp ok">FUZZY REFERENCE MATCH</span></td><td class='mono num'>₹1,999.00</td><td class='mono'>2026-08-04</td><td class='notes'>Matched via approximate reference text (order_id &#x27;order_5DGU5eMv1PXS7N&#x27; vs settlement order_id &#x27;order_5DGUe5Mv1PXS7N&#x27;) — formatting differs slightly. Recommend verifying manually.</td></tr>
+<tr><td class='mono'>setl_WJSaVJaed4bT</td><td>Settlement</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹1,799.00</td><td class='mono'>2026-08-14</td><td class='notes'>Matched, but settled 13 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>setl_bXnYDGrNOxfJ</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹349.00</td><td class='mono'>2026-08-10</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_VRLbPqphy4p8</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹7,999.00</td><td class='mono'>2026-08-16</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_CZe2y9rCXCU8</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹299.00</td><td class='mono'>2026-08-16</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_etDmiofkWrxi</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹799.00</td><td class='mono'>2026-08-15</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_CrB7ZyrnkOnh</td><td>Settlement</td><td><span class="stamp ok">FUZZY REFERENCE MATCH</span></td><td class='mono num'>₹599.00</td><td class='mono'>2026-08-11</td><td class='notes'>Matched via approximate reference text (order_id &#x27;order_jNHqtlFHjdSyUZ&#x27; vs settlement order_id &#x27;order_jNHqltFHjdSyUZ&#x27;) — formatting differs slightly. Recommend verifying manually.</td></tr>
+<tr><td class='mono'>setl_NqHDsAV23qnT</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹899.00</td><td class='mono'>2026-08-18</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_nBG2HiGnY3rX</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,799.00</td><td class='mono'>2026-08-06</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_F7RFSBdOPv3x</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹3,999.00</td><td class='mono'>2026-08-11</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_45mmFd1iFR3g</td><td>Settlement</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹5,999.00</td><td class='mono'>2026-08-15</td><td class='notes'>Matched, but settled 9 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>setl_f45nVmhWfwTR</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,499.00</td><td class='mono'>2026-08-10</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_pzpG32uAcFpM</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,199.00</td><td class='mono'>2026-08-18</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_VM2kM588IfDc</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹4,999.00</td><td class='mono'>2026-08-14</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_05KB9x1OIsvV</td><td>Settlement</td><td><span class="stamp ok">FUZZY REFERENCE MATCH</span></td><td class='mono num'>₹399.00</td><td class='mono'>2026-08-05</td><td class='notes'>Matched via approximate reference text (order_id &#x27;order_ujB3YcTB5Uqua2&#x27; vs settlement order_id &#x27;order_ujB3YcTB5Uqua&#x27;) — formatting differs slightly. Recommend verifying manually.</td></tr>
+<tr><td class='mono'>setl_6dlEZedTxjI1</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,799.00</td><td class='mono'>2026-08-14</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_NzE0kBGmxbIf</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,499.00</td><td class='mono'>2026-08-02</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_B4bsSvsU9XZ6</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹999.00</td><td class='mono'>2026-08-16</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_KX783FSU8iIo</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹999.00</td><td class='mono'>2026-08-15</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_VN0mtk2BQLiC</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,499.00</td><td class='mono'>2026-08-17</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_GHZbKoXi0d9T</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹5,999.00</td><td class='mono'>2026-08-19</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_UrEO6c6tjrDz</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹599.00</td><td class='mono'>2026-08-12</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_woIzDfpcaAyJ</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹3,999.00</td><td class='mono'>2026-08-07</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_Yr0g2noa9f4D</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,299.00</td><td class='mono'>2026-08-20</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_FibEZxq1WDmx</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹999.00</td><td class='mono'>2026-08-17</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_GurL1es7ukqq</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹349.00</td><td class='mono'>2026-08-15</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_D55RRTkyqo0V</td><td>Settlement</td><td><span class="stamp ok">DELAYED SETTLEMENT</span></td><td class='mono num'>₹999.00</td><td class='mono'>2026-08-30</td><td class='notes'>Matched, but settled 12 days after the order date (normal window is 4 days). Still resolved — just a slower cycle.</td></tr>
+<tr><td class='mono'>setl_DGX0FZBJQ6c1</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹2,999.00</td><td class='mono'>2026-08-15</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_Dyexz9e2axKQ</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹799.00</td><td class='mono'>2026-08-12</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr>
+<tr><td class='mono'>setl_YqYEaxADcMb3</td><td>Settlement</td><td><span class="stamp ok">CLEAN</span></td><td class='mono num'>₹1,499.00</td><td class='mono'>2026-08-04</td><td class='notes'>Matched — reference, amount, and settlement window all check out.</td></tr></tbody></table>
+  </details>
+
+  <footer>
+    Generated by ReconLoop's <code>ReconciliationAgent</code> — deterministic, rule-based matching.
+    No record is dropped: total processed = matched + flagged + exceptions, always.
+  </footer>
+
+</div>
+</body>
+</html>
