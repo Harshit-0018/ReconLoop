@@ -153,8 +153,8 @@ ReconLoop/
 - **Project Objectives (draft — feel free to edit):** ReconLoop is a multi-source reconciliation agent that matches an internal order ledger against a payment gateway settlement report. It runs a deterministic, explainable multi-pass matching pipeline over a 116-record synthetic batch, reports a measured match rate validated against known ground truth (100% accuracy on the shipped seed), and produces a complete, categorized exception list for every record it couldn't auto-resolve — directly answering the track's ask to report match rate and exceptions without cherry-picking a good result.
 - **Build Challenges (draft — swap in your real experience):** The trickiest part was deciding what "matched" should mean. A settlement that's simply late shouldn't sit in the same bucket as one with the wrong amount, but both start out as "not an exact clean match." I solved it by giving every record exactly one status from a fixed set (`src/models.py`), splitting "resolved but flagged" (delayed, fuzzy-reference) from "true exceptions" (amount mismatch, unsettled, unidentified, duplicate) — so the match-rate math and the exception list can never silently disagree with each other. I also had to walk back an early version of the synthetic "reference typo" generator: uppercasing the whole `order_id` changed too much of the string (similarity ratio ~0.5) to ever pass a sane fuzzy-match threshold, so I switched to smaller, more realistic drift (a dropped trailing character, a single lookalike-character swap) that a legacy export would actually produce.
 
-*(These are starting points — the second one especially reads better in your own words about what you actually hit.)*
+
 
 ## License
 
-MIT — see `LICENSE`.
+Harshit
