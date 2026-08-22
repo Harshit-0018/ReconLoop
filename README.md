@@ -29,17 +29,20 @@ The static HTML report is the primary deliverable: everything a reviewer needs o
 
 **Exceptions — order-side view** — every unresolved order, with its status (`AMOUNT_MISMATCH`, `UNSETTLED_ORDER`, etc.) and a plain-language note explaining why it couldn't be auto-matched.
 
-**Image 2**
+**<img width="1897" height="903" alt="Screenshot 2026-08-22 184854" src="https://github.com/user-attachments/assets/d4f857a6-618f-4f96-a17f-3db9b1de82f7" />
+**
 
 **Exceptions — settlement-side view** — the same exception list from the settlement side, including `UNIDENTIFIED_SETTLEMENT` and `DUPLICATE_SETTLEMENT` cases.
 
-**Image 3**
+**<img width="1899" height="909" alt="Screenshot 2026-08-22 184906" src="https://github.com/user-attachments/assets/57e021da-dfd0-4c89-838b-27c9c97bca56" />
+**
 
 ### Test suite — 12/12 passing
 
 Standard-library `unittest`, no dependencies required. Run with `python3 -m unittest discover tests -v`.
 
-**Image 4**
+**![Uploading Screenshot 2026-08-22 184957.png…]()
+**
 
 ### Interactive dashboard — `streamlit run app.py`
 
